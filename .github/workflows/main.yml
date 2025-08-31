@@ -17,3 +17,12 @@ jobs:
           ls -al
           whoami
           pwd
+      - name: Copy files via EC2
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          source: ./
+          target: /home/ubuntu
